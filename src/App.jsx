@@ -1,18 +1,17 @@
-import React, { useRef, useState } from "react";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import About from "./pages/about";
+import Home from "./pages/home";
 
 export default function App() {
-  const [username, setUsername] = useState("");
-  const inputRef = useRef(null);
   return (
     <div>
-      <input
-        ref={inputRef}
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <button onClick={() => inputRef.current.focus()}>Focus input </button>
-      <p>Typed name: {username}</p>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
