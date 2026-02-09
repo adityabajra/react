@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-export default function App() {
-  const [width, setWidth] = useState(window.innerWidth);
+import React, { useRef, useState } from "react";
 
-  useEffect(() => {
-    function handleResize() {
-      setWidth(window.innerWidth);
-    }
-    window.addEventListener("resize", handleResize);
-  }, []);
+export default function App() {
+  const [username, setUsername] = useState("");
+  const inputRef = useRef(null);
   return (
     <div>
-      <h3>Width: {width}</h3>
+      <input
+        ref={inputRef}
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+      <button onClick={() => inputRef.current.focus()}>Focus input </button>
+      <p>Typed name: {username}</p>
     </div>
   );
 }
