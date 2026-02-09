@@ -1,10 +1,12 @@
-import React from "react";
 import { useState } from "react";
-
 export default function App() {
   const [count, setCount] = useState(0);
+  const [isloggedIn, setIsLoggedIn] = useState(false);
 
   function handleIncrement() {
+    // setCount(count+1);
+    // console.log(count)
+
     setCount((oldcount) => oldcount + 1);
     setCount((oldcount) => oldcount + 1);
     setCount((oldcount) => oldcount + 1);
@@ -12,16 +14,15 @@ export default function App() {
 
   return (
     <div>
-      {/* <Blog>
-        <h3>Blog Title 1</h3>
-        <p> Blog Description 1</p>
-      </Blog>
-      <Blog>
-        <h3>Blog Title 2</h3>
-        <p> Blog Description 2</p>
-      </Blog> */}
-      <h3>{count}</h3>
-      <button onClick={handleIncrement}> Increment</button>
+      <h3>count:{count}</h3>
+      <button onClick={handleIncrement}>Increment</button>
+
+      {isloggedIn && <h3>Welcome</h3>}
+      {!isloggedIn && <h3>Please</h3>}
+
+      <button onClick={() => setIsLoggedIn(!isloggedIn)}>
+        {isloggedIn ? "login" : "logout"}
+      </button>
     </div>
   );
 }
